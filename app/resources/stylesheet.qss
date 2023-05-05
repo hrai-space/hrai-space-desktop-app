@@ -1,14 +1,14 @@
 
 * 
 {
-    font-family: Segoe UI;
-    font-size: 15px;
+    font-family: Public Sans Thin;
+    font-size: 17px;
 }
 
 /*-----QWidget-----*/
 QWidget
 {
-    background-color: #1E1E1E;
+    background-color: #121416;
     color: #fff;
     selection-background-color: #b78620;
     selection-color: #000;
@@ -18,9 +18,18 @@ QWidget
 /*-----QLabel-----*/
 QLabel
 {
-    background-color: transparent;
+    background: transparent;
     color: #fff;
     font-weight: 500;
+}
+
+QLabel#logolbl
+{
+    font-family: Bauhaus 93;
+    font-size: 25px;
+    background: #161A1E;
+    color: #fff;
+    border-radius: 17px;
 }
 
 
@@ -220,17 +229,19 @@ QPushButton::checked
 /*-----QLineEdit-----*/
 QLineEdit
 {
-    background-color: #68696B;
+    background: #161A1E;
+    /*background: white;*/
     color : #eee;
-    border: 2px solid #68696B;
-    border-radius: 4px;
-    /*padding: 2px;*/
+    width: 200px;
+    height: 23px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
     /*padding-left: 5px;*/
 }
 
 QLineEdit::focus
 {
-    border: 2px solid #365EC8;
     /*border-style: outset;*/
     /*padding-left: 7px;*/
 }

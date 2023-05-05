@@ -1,17 +1,24 @@
-#include "main_window.h"
+#include "Main_Window.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-    m_mainLay = new QGridLayout(this);
-    m_mainLay->setContentsMargins(10, 20, 10, 20);
-    m_mainLay->setSpacing(20);
+    m_mainLay = new QVBoxLayout;
+    m_mainLay->setContentsMargins(45, 32, 45, 32);
 
-    QLabel *lbl = new QLabel(this);
-    lbl->setPixmap(QPixmap(":/logo_white.png"));
+    /* Top bar */
+    m_topBarWidget = new TopBar(this);
 
-    m_mainLay->addWidget(lbl);
 
+    /* Body area */
+    m_bodyStackedLay = new QStackedLayout;
+    //m_bodyStackedLay->setContentsMargins(0, 0, 0, 0);
+    //m_bodyStackedLay->setSpacing(0);
+
+
+    m_mainLay->addWidget(m_topBarWidget, 1, Qt::AlignTop);
+    m_mainLay->addLayout(m_bodyStackedLay);
+    setLayout(m_mainLay);
     /* Connections */
 }
 

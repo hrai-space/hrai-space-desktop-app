@@ -17,9 +17,11 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network REQUIRED)
 
 set(PROJECT_SOURCES
-        main.cpp
-        main_window.cpp
-        main_window.h
+        Main.cpp
+        Main_Window.cpp
+        Main_Window.h
+        Top_Bar.h
+        Top_Bar.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
