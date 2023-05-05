@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
     m_mainLay->setContentsMargins(10, 20, 10, 20);
     m_mainLay->setSpacing(20);
 
+    QLabel *lbl = new QLabel(this);
+    lbl->setPixmap(QPixmap(":/logo_white.png"));
+
+    m_mainLay->addWidget(lbl);
 
     /* Connections */
 }
