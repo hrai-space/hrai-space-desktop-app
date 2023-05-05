@@ -22,6 +22,8 @@ set(PROJECT_SOURCES
         Main_Window.h
         Top_Bar.h
         Top_Bar.cpp
+        Library_Page.h
+        Library_Page.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -15,10 +15,14 @@ MainWindow::MainWindow(QWidget *parent)
     //m_bodyStackedLay->setContentsMargins(0, 0, 0, 0);
     //m_bodyStackedLay->setSpacing(0);
 
+    m_libraryPage = new LibraryPage(this);
+    m_bodyStackedLay->addWidget(m_libraryPage);
+
 
     m_mainLay->addWidget(m_topBarWidget, 1, Qt::AlignTop);
     m_mainLay->addLayout(m_bodyStackedLay);
     setLayout(m_mainLay);
+
     /* Connections */
 }
 

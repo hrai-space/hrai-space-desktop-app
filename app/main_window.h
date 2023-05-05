@@ -11,6 +11,7 @@
 #include <QLineEdit>
 
 #include "Top_Bar.h"
+#include "Library_Page.h"
 
 class MainWindow : public QWidget
 {
@@ -28,6 +29,7 @@ private:
     TopBar *m_topBarWidget;
 
     // Body area
+    LibraryPage *m_libraryPage;
     QStackedLayout *m_bodyStackedLay;
     QGridLayout *m_bodyGridLay;
     QFrame *m_bodyFrame;

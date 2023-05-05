@@ -10,16 +10,16 @@ TopBar::TopBar(QWidget *parent)
     setLayout(m_mainLay);
 
     m_logoPixmap = QPixmap(":/logo.svg");
-    m_logoPixmap = m_logoPixmap.scaledToWidth(80, Qt::SmoothTransformation);
+    m_logoPixmap = m_logoPixmap.scaledToWidth(120, Qt::SmoothTransformation);
 
     m_avatarPixmap = QPixmap(":/ava.png");
-    m_avatarPixmap = m_avatarPixmap.scaledToWidth(35, Qt::SmoothTransformation);
+    m_avatarPixmap = m_avatarPixmap.scaledToWidth(43, Qt::SmoothTransformation);
 
     m_logoLbl = new QLabel(this);
     m_logoLbl->setObjectName("logolbl");
     //m_logoLbl->setText(".space");
     m_logoLbl->setAlignment(Qt::AlignCenter);
-    m_logoLbl->setFixedSize(144, 43);
+    m_logoLbl->setFixedSize(160, 43);
     m_logoLbl->setPixmap(m_logoPixmap);
 
     m_findTxtEdit = new QLineEdit(this);
