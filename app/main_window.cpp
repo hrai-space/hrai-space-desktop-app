@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_bodyStackedLay->addWidget(m_libraryPage);
 
 
-    m_mainLay->addWidget(m_topBarWidget, 1, Qt::AlignTop);
+    m_mainLay->addWidget(m_topBarWidget, 0, Qt::AlignTop);
     m_mainLay->addLayout(m_bodyStackedLay);
     setLayout(m_mainLay);
 

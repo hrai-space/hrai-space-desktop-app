@@ -9,6 +9,8 @@
 #include <QGridLayout>
 #include <QScrollArea>
 
+#include "Game_Tile.h"
+
 class LibraryPage : public QWidget
 {
     Q_OBJECT

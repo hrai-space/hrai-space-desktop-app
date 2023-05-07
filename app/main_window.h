@@ -34,5 +34,6 @@ private:
     QGridLayout *m_bodyGridLay;
     QFrame *m_bodyFrame;
 
+
 };
 #endif // MAINWINDOW_H

@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
         Top_Bar.cpp
         Library_Page.h
         Library_Page.cpp
+        Game_Tile.h Game_Tile.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
