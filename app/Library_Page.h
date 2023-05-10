@@ -24,6 +24,8 @@ private:
     QGridLayout *m_gridLay;
     QScrollArea *m_scrollArea;
     QWidget *m_scrollWidget;
+    QLabel *m_pageTitleLbl;
+    QFont lbl_font;
 };
 
 #endif // LIBRARYPAGE_H

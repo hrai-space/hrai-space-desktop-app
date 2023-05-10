@@ -5,15 +5,17 @@
 #include <QScreen>
 #include <QDesktopWidget>
 #include <QFile>
+#include <QDebug>
+#include <QStyleFactory>
 
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QFontDatabase::addApplicationFont(":/PublicSans-VariableFont_wght.ttf");
-    QFontDatabase::addApplicationFont(":/PublicSans-Italic-VariableFont_wght.ttf");
-    QFontDatabase::addApplicationFont(":/Bauhaus-93.ttf");
+    int font_id = QFontDatabase::addApplicationFont(":/PublicSans-VariableFont_wght.ttf");
+    //QFontDatabase::addApplicationFont(":/PublicSans-Italic-VariableFont_wght.ttf");
+    //QFontDatabase::addApplicationFont(":/Bauhaus-93.ttf");
 
     QFile style_file(":/stylesheet.qss");
     style_file.open(QFile::ReadOnly);
@@ -23,7 +25,7 @@ int main(int argc, char *argv[])
     MainWindow main_window;
     main_window.setWindowTitle("Hrai-Space");
     main_window.resize(1547, 1000);
-
     main_window.show();
+
     return app.exec();
 }
