@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 #include <QLineEdit>
 
 
@@ -16,12 +17,12 @@ public:
     explicit TopBar(QWidget *parent = nullptr);
 
 signals:
-
+    void openLogInPopup();
 private:
     QHBoxLayout *m_mainLay;
     QLabel *m_logoLbl;
     QLineEdit *m_findTxtEdit;
-    QLabel *m_profileLbl;
+    QPushButton *m_profileBtn;
     QPixmap m_logoPixmap;
     QPixmap m_avatarPixmap;
 };

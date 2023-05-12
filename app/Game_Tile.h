@@ -16,10 +16,10 @@ public:
     void setCover(QPixmap pixmap);
     QSize sizeHint() const override;
 protected:
-    void paintEvent(QPaintEvent* event) override;
-    void enterEvent(QEvent * event) override;
-    void leaveEvent(QEvent * event) override;
-    void resizeEvent(QResizeEvent  * event) override;
+    void paintEvent(QPaintEvent *event) override;
+    void enterEvent(QEvent *event) override;
+    void leaveEvent(QEvent *event) override;
+    void resizeEvent(QResizeEvent  *event) override;
 signals:
 private:
     QPixmap m_coverPixmap;

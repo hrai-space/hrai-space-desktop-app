@@ -1,0 +1,25 @@
+
+#ifndef POPUP_H
+#define POPUP_H
+
+
+#include <QWidget>
+
+
+class Popup : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit Popup(QWidget *parent = nullptr);
+    QSize sizeHint() const override;
+protected:
+    void paintEvent(QPaintEvent* event) override;
+    void resizeEvent(QResizeEvent  *event) override;
+signals:
+private:
+    QSize m_size;
+    qreal m_borderWidth;
+
+};
+
+#endif // POPUP_H

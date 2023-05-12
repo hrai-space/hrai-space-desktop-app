@@ -96,7 +96,7 @@ void GameTile::resizeEvent(QResizeEvent *event)
     m_titleBgSize = QSizeF(m_coverSize.width(), m_size.height() * 0.3);
     m_titleBgPos = QPointF(m_padding, m_size.height() - m_titleBgSize.height() - m_padding);
 
-    m_titlePos = QPointF(m_coverPos.x() + 2 * m_padding, m_titleBgPos.y() + m_titleBgSize.height() * 0.65);
+    m_titlePos = QPointF(m_coverPos.x() + 4 * m_padding, m_titleBgPos.y() + m_titleBgSize.height() * 0.65);
 
     QSize pixmap_size = m_coverPixmap.size();
     if (pixmap_size.width() >= pixmap_size.height())

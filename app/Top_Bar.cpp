@@ -26,12 +26,16 @@ TopBar::TopBar(QWidget *parent)
     //m_findTxtEdit->setFixedSize(200, 70);
     m_findTxtEdit->setPlaceholderText("Search games");
 
-    m_profileLbl = new QLabel(this);
-    m_profileLbl->setText("Profile");
-    m_profileLbl->setPixmap(m_avatarPixmap);
+    m_profileBtn = new QPushButton(this);
+    m_profileBtn->setObjectName("profile");
+    m_profileBtn->setIcon(m_avatarPixmap);
+    m_profileBtn->setIconSize(QSize(43, 43));
+    //m_profileBtn->setFixedSize(45, 45);
 
     m_mainLay->addWidget(m_logoLbl);
     m_mainLay->addWidget(m_findTxtEdit, 1, Qt::AlignRight);
-    m_mainLay->addWidget(m_profileLbl);
+    m_mainLay->addWidget(m_profileBtn);
+
+    connect(m_profileBtn, &QPushButton::released, this, &TopBar::openLogInPopup);
 }
 
