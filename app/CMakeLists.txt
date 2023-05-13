@@ -18,15 +18,13 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network REQUIRED)
 
 set(PROJECT_SOURCES
         Main.cpp
-        Main_Window.cpp
-        Main_Window.h
-        Top_Bar.h
-        Top_Bar.cpp
-        Library_Page.h
-        Library_Page.cpp
+	Main_Window.h Main_Window.cpp
+	Top_Bar.h Top_Bar.cpp
+	Library_Page.h Library_Page.cpp
         Game_Tile.h Game_Tile.cpp
         Popup.h Popup.cpp
         Login_Popup.h Login_Popup.cpp
+	Game_Page.h Game_Page.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

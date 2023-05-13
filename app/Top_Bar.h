@@ -14,7 +14,7 @@ class TopBar : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TopBar(QWidget *parent = nullptr);
+    explicit TopBar(const QPixmap &logo, QWidget *parent = nullptr);
 
 signals:
     void openLogInPopup();

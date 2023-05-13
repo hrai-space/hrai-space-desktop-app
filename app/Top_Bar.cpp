@@ -1,15 +1,14 @@
 
 #include "Top_Bar.h"
 
-TopBar::TopBar(QWidget *parent)
-    : QWidget{parent}
+TopBar::TopBar(const QPixmap &logo, QWidget *parent)
+    : QWidget{parent}, m_logoPixmap{logo}
 {
     m_mainLay = new QHBoxLayout;
     m_mainLay->setContentsMargins(0, 0, 0, 0);
     m_mainLay->setSpacing(50);
     setLayout(m_mainLay);
 
-    m_logoPixmap = QPixmap(":/logo.svg");
     m_logoPixmap = m_logoPixmap.scaledToWidth(120, Qt::SmoothTransformation);
 
     m_avatarPixmap = QPixmap(":/ava.png");

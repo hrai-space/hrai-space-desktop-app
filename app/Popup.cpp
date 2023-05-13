@@ -1,10 +1,12 @@
 
 #include <QPainter>
+#include <QKeyEvent>
+#include <QDebug>
 
 #include "Popup.h"
 
 Popup::Popup(QWidget *parent)
-    : QWidget{parent}, m_borderWidth{2.0}
+    : QWidget{parent}, m_borderWidth{2.0}, m_isMouseInside{false}
 {
 }
 

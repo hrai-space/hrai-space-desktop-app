@@ -38,6 +38,12 @@ QWidget#popup:hover
 	background: #161A1E;
 }
 
+QWidget#popup QLabel#logo
+{
+	border: none;
+	padding: 0px;
+}
+
 QWidget#popup QLabel
 {
 	border-bottom: 3px solid #2351F4;

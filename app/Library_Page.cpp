@@ -37,13 +37,6 @@ LibraryPage::LibraryPage(QWidget *parent)
             //tile->setFixedWidth(640);
             //tile->setFixedSize(368, 350);
             m_gridLay->addWidget(tile, r, c, Qt::AlignHCenter);
-            qDebug()<<tile->size();
-            qDebug()<<tile->sizeHint();
-            qDebug()<<tile->layout();
-            qDebug()<<tile->minimumSize();
-            qDebug()<<tile->minimumSizeHint();
-            qDebug()<<tile->sizePolicy();
-            qDebug() << "-+-+-+-+-+-+-+-+-+-+-";
         }
     }
 
