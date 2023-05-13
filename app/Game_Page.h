@@ -15,10 +15,14 @@ class GamePage : public QWidget
     Q_OBJECT
 public:
     explicit GamePage(QWidget *parent = nullptr);
-
+protected:
+    void paintEvent(QPaintEvent *event) override;
+    void resizeEvent(QResizeEvent  *event) override;
 signals:
 
 private:
+    QSize m_size;
+
     QVBoxLayout *m_mainLay;
 
     QVBoxLayout *m_mainScrollLay;

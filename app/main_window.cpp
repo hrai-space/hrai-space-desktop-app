@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_libraryPage = new LibraryPage(this);
     m_bodyStackedLay->addWidget(m_libraryPage);
     m_gamePage = new GamePage(this);
+    m_gamePage->setObjectName("gamepg");
     m_bodyStackedLay->addWidget(m_gamePage);
     m_bodyStackedLay->setCurrentIndex(1);
 

@@ -111,6 +111,5 @@ void GameTile::resizeEvent(QResizeEvent *event)
         pixmap_size = m_coverPixmap.size();
         m_pixmapPos = QPointF(m_padding, (m_coverSize.height() - pixmap_size.height()) / 2);
     }
-    qDebug() << "Size = " << event->size() << " [resizeEvent]";
 }
 

@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
         Popup.h Popup.cpp
         Login_Popup.h Login_Popup.cpp
 	Game_Page.h Game_Page.cpp
+	Picture_Widget.h Picture_Widget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

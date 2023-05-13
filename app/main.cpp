@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     MainWindow main_window;
     main_window.setWindowTitle("Hrai-Space");
     main_window.resize(1547, 1000);
+    //main_window.setFixedSize(1547, 1000);
     main_window.show();
 
     return app.exec();
