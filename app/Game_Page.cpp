@@ -12,16 +12,17 @@ GamePage::GamePage(QWidget *parent)
     m_mainLay->setSpacing(0);
 
     m_mainScrollLay = new QVBoxLayout;
+    m_mainScrollLay->setSizeConstraint(QLayout::SetMaximumSize);
     m_mainScrollLay->setContentsMargins(0, 0, 0, 0);
-    //m_mainScrollLay->setSpacing(0);
+    m_mainScrollLay->setSpacing(30);
     //m_mainScrollLay->setSizeConstraint(QLayout::SetMinimumSize);
     m_centralWidget = new QWidget(this);
     m_centralWidget->setObjectName("gamepg");
     //m_centralWidget->setStyleSheet("background: transparent;");
     m_mainScrollArea = new QScrollArea(this);
-    //m_mainScrollArea->setStyleSheet("background: transparent;");
     m_mainScrollArea->setWidgetResizable(true);
-    //m_mainScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    m_mainScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_mainScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_mainScrollArea->setWidget(m_centralWidget);
     m_centralWidget->setLayout(m_mainScrollLay);
 
@@ -29,24 +30,40 @@ GamePage::GamePage(QWidget *parent)
 
 
     /* Screenshots area */
-    m_screenshotsGridLay = new QGridLayout;
-    //m_screenshotsGridLay->setContentsMargins(0, 0, 0, 0);
-    //m_screenshotsGridLay->setSpacing(0);
+    m_screenshotsHBoxLay = new QHBoxLayout;
+    //m_screenshotsHBoxLay->setSizeConstraint(QLayout::SetNoConstraint);
+    m_screenshotsHBoxLay->setContentsMargins(20, 0, 20, 0);
+    //m_screenshotsHBoxLay->setSpacing(10);
     m_screenshotsScrollWidget = new QWidget(this);
+    m_screenshotsScrollWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     m_screenshotsScrollArea = new QScrollArea(this);
-    //m_screenshotsScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    //m_screenshotsScrollArea->setWidgetResizable(true);
+    //m_screenshotsScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_screenshotsScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_screenshotsScrollArea->setWidgetResizable(true);
     m_screenshotsScrollArea->setWidget(m_screenshotsScrollWidget);
-    m_screenshotsScrollWidget->setLayout(m_screenshotsGridLay);
-    //m_screenshotsGridLay->setSizeConstraint(QLayout::SetMaximumSize);
+    m_screenshotsScrollWidget->setLayout(m_screenshotsHBoxLay);
+    //m_screenshotsScrollArea->setStyleSheet("border: solid 1px red;");
+    m_screenshotsScrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
 
-    m_screenshotPixmap = QPixmap("../app/resources/pubg.jpg");
-    //QPixmap scaled_screenshot = m_screenshotPixmap.scaledToWidth(size().width(), Qt::SmoothTransformation);
-    m_screenshotLbl = new QLabel(this);
-    //m_screenshotLbl->setAlignment(Qt::AlignHCenter);
-    m_screenshotLbl->setPixmap(m_screenshotPixmap);
-    m_screenshotLbl->setStyleSheet("background: red; border-radius: 50px;");
+    m_screenshotPixmap = QPixmap("../app/resources/pubg-1.jpg");
+
+    for (int var = 0; var < 10; ++var)
+    {
+        PictureWidget *pict = new PictureWidget(this);
+        pict->setCornerRadius(8.0, 8.0);
+        pict->setPixmap(&m_screenshotPixmap);
+        pict->setFixedSize(190, 107);
+        //pict->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        m_screenshotsHBoxLay->addWidget(pict);
+    }
+
+
+
+    m_pictureWidget = new PictureWidget(this);
+    m_pictureWidget->setCornerRadius(50.0, 50.0);
+    m_pictureWidget->setPixmap(&m_screenshotPixmap);
+    //m_pictureWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
 
     m_gameTitleLbl = new QLabel("Dark Story", this);
     m_gameTitleLbl->setObjectName("pgtitle");
@@ -60,12 +77,12 @@ GamePage::GamePage(QWidget *parent)
 //    }
 
 
-    m_mainScrollLay->addWidget(m_screenshotLbl, 0, Qt::AlignTop);
-    m_mainScrollLay->addWidget(m_screenshotsScrollArea);
+    m_mainScrollLay->addWidget(m_pictureWidget, 0, Qt::AlignTop);
+    m_mainScrollLay->addWidget(m_screenshotsScrollArea, 1, Qt::AlignHCenter);
     m_mainScrollLay->addWidget(m_gameTitleLbl, 0, Qt::AlignLeft | Qt::AlignTop);
     m_mainScrollLay->addWidget(m_descriptionTxt, 1);
 
-    for (int var = 0; var < 100; ++var)
+    for (int var = 0; var < 50; ++var)
     {
         m_descriptionTxt = new QLabel(QString("Label %1").arg(var), this);
         m_mainScrollLay->addWidget(m_descriptionTxt, 0);
@@ -77,27 +94,11 @@ GamePage::GamePage(QWidget *parent)
 
 void GamePage::paintEvent(QPaintEvent *event)
 {
-//    m_size = size();
-//    QPainter painter(this);
-//    painter.setRenderHints(QPainter::Antialiasing);
-//    painter.setPen(Qt::NoPen);
-//    QPen pen_title(QColor(92, 147, 233), 1, Qt::SolidLine);
-//    QBrush brush_hover_bg(QColor(22, 26, 30), Qt::SolidPattern);
-//    QBrush brush_cover_bg(QColor(18, 20, 22), Qt::SolidPattern);
-//    QBrush brush_title_bg(QColor(0, 255, 0), Qt::SolidPattern);
-
-//    // Background
-//    painter.setBrush(brush_title_bg);
-//    painter.drawRoundedRect(0, 0, m_size.width(), m_size.height(), 20.0, 20.0);
-
-    //painter.setClipPath(path);
-    //painter.drawPixmap(m_pixmapPos, m_coverPixmap);
-    //painter.setClipping(false);
-
-    //QWidget::paintEvent(event);
 }
 
 void GamePage::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
+    m_pictureWidget->setFixedSize(size().width(), 669);
+    m_screenshotsScrollArea->setFixedSize(size().width(), 110);
 }

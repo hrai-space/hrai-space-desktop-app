@@ -14,12 +14,13 @@ TopBar::TopBar(const QPixmap &logo, QWidget *parent)
     m_avatarPixmap = QPixmap(":/ava.png");
     m_avatarPixmap = m_avatarPixmap.scaledToWidth(43, Qt::SmoothTransformation);
 
-    m_logoLbl = new QLabel(this);
-    m_logoLbl->setObjectName("logolbl");
+    m_logoBtn = new QPushButton(this);
+    m_logoBtn->setObjectName("logobtn");
     //m_logoLbl->setText(".space");
-    m_logoLbl->setAlignment(Qt::AlignCenter);
-    m_logoLbl->setFixedSize(160, 43);
-    m_logoLbl->setPixmap(m_logoPixmap);
+    //m_logoLbl->setAlignment(Qt::AlignCenter);
+    m_logoBtn->setFixedSize(160, 43);
+    m_logoBtn->setIcon(m_logoPixmap);
+    m_logoBtn->setIconSize(m_logoBtn->size());
 
     m_findTxtEdit = new QLineEdit(this);
     //m_findTxtEdit->setFixedSize(200, 70);
@@ -31,10 +32,11 @@ TopBar::TopBar(const QPixmap &logo, QWidget *parent)
     m_profileBtn->setIconSize(QSize(43, 43));
     //m_profileBtn->setFixedSize(45, 45);
 
-    m_mainLay->addWidget(m_logoLbl);
+    m_mainLay->addWidget(m_logoBtn);
     m_mainLay->addWidget(m_findTxtEdit, 1, Qt::AlignRight);
     m_mainLay->addWidget(m_profileBtn);
 
     connect(m_profileBtn, &QPushButton::released, this, &TopBar::openLogInPopup);
+    connect(m_logoBtn, &QPushButton::released, this, &TopBar::backToLibraryPage);
 }
 

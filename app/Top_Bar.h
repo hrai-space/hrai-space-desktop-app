@@ -18,9 +18,10 @@ public:
 
 signals:
     void openLogInPopup();
+    void backToLibraryPage();
 private:
     QHBoxLayout *m_mainLay;
-    QLabel *m_logoLbl;
+    QPushButton *m_logoBtn;
     QLineEdit *m_findTxtEdit;
     QPushButton *m_profileBtn;
     QPixmap m_logoPixmap;

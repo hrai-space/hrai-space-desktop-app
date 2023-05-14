@@ -16,7 +16,6 @@ LibraryPage::LibraryPage(QWidget *parent)
     m_gridLay->setSpacing(30);
     m_scrollWidget = new QWidget(this);
     m_scrollArea = new QScrollArea(this);
-    m_scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     m_scrollArea->setWidgetResizable(true);
     m_scrollArea->setWidget(m_scrollWidget);
     m_scrollWidget->setLayout(m_gridLay);

@@ -24,6 +24,7 @@ public:
     ~MainWindow();
 private slots:
     void openLogInPopup();
+    void backToLibraryPage();
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;
     void resizeEvent(QResizeEvent  *event) override;

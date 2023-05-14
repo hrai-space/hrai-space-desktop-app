@@ -7,7 +7,7 @@
 QScrollArea
 {
 	background: transparent;
-	/*border: none;*/
+	border: none;
 }
 
 QScrollArea QWidget
@@ -116,20 +116,21 @@ QLabel
 	/*font-weight: 500;*/
 }
 
-QLabel#logolbl
-{
-	font-family: Bauhaus 93;
-	font-size: 25px;
-	background: #161A1E;
-	color: #fff;
-	border-radius: 16px;
-}
 
 QLabel#pgtitle
 {
 	font-weight: 500;
 	font-size: 25px;
 	color: #fff;
+}
+
+QPushButton#logobtn
+{
+	font-size: 25px;
+	border: none;
+	background: #161A1E;
+	color: #fff;
+	border-radius: 16px;
 }
 
 /* QPushButton */
@@ -280,7 +281,7 @@ QScrollBar:horizontal
 	background-color: rgba(0, 0, 0, 50);
 	border-radius: 3px;
 	height: 7px;
-	margin: 0px 2px 0px 2px;
+	margin: 0px 0px 0px 0px;
 }
 QScrollBar::handle:horizontal
 {
@@ -288,7 +289,7 @@ QScrollBar::handle:horizontal
 	border-radius: 3px;
 	min-width: 20px;
 	max-width: 50px;
-	margin: 0px 12px 0px 12px;
+	margin: 0px 12px 0 12px;
 }
 QScrollBar::add-line:horizontal
 {

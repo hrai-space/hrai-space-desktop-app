@@ -1,6 +1,7 @@
 
 #include <QResizeEvent>
 #include <QMouseEvent>
+#include <QDebug>
 
 #include "Main_Window.h"
 
@@ -43,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     /* Connections */
     connect(m_topBarWidget, &TopBar::openLogInPopup, this, &MainWindow::openLogInPopup);
+    connect(m_topBarWidget, &TopBar::backToLibraryPage, this, &MainWindow::backToLibraryPage);
 }
 
 MainWindow::~MainWindow()
@@ -55,6 +57,13 @@ void MainWindow::openLogInPopup()
         m_logInPopup->show();
     else
         m_logInPopup->hide();
+    qDebug() << m_logInPopup->isVisible();
+}
+
+void MainWindow::backToLibraryPage()
+{
+    m_bodyStackedLay->setCurrentIndex(0);
+    m_logInPopup->hide();
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -77,5 +86,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     QPoint popup_pos = QPoint(event->size().width() / 2 - m_logInPopup->size().width() / 2,
                               event->size().height() / 2 - m_logInPopup->size().height() / 2);
     m_logInPopup->move(popup_pos);
+    qDebug() << popup_pos;
 }
 

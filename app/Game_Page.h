@@ -7,8 +7,11 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QScrollArea>
+
+#include "Picture_Widget.h"
 
 class GamePage : public QWidget
 {
@@ -29,7 +32,7 @@ private:
     QScrollArea *m_mainScrollArea;
     QWidget *m_centralWidget;
 
-    QGridLayout *m_screenshotsGridLay;
+    QHBoxLayout *m_screenshotsHBoxLay;
     QScrollArea *m_screenshotsScrollArea;
     QWidget *m_screenshotsScrollWidget;
 
@@ -37,6 +40,8 @@ private:
     QLabel *m_screenshotLbl;
     QLabel *m_gameTitleLbl;
     QLabel *m_descriptionTxt;
+
+    PictureWidget *m_pictureWidget;
 };
 
 #endif // GAMEPAGE_H
