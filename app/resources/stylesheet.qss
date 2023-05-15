@@ -1,6 +1,6 @@
 * 
 {
-	font-family: Public Sans Thin;
+	font-family: Open Sans;
 	font-size: 17px;
 }
 
@@ -12,7 +12,7 @@ QScrollArea
 
 QScrollArea QWidget
 {   
-	font-family: Public Sans Thin;
+	font-family: Open Sans;
 	font-weight: 100;
 	/*border: none;*/
 }
@@ -45,6 +45,7 @@ QWidget#popup QLabel#logo
 
 QWidget#popup QLabel
 {
+	font-weight: medium;
 	border-bottom: 3px solid #2351F4;
 	padding-bottom: 5px;
 }
@@ -82,15 +83,9 @@ QWidget#popup QPushButton
 QWidget#gamepg
 {
 	background: #161A1E;
-	border-radius: 50px;
+	border-radius: 20px;
 }
 
-QWidget#gamepg > QLabel
-{
-	background: blue;
-	border: none;
-	border-radius: 50px;
-}
 
 QWidget#gamepg QScrollArea
 {
@@ -109,11 +104,9 @@ QWidget#gamepg QWidget
 /* QLabel */
 QLabel
 {
-	font-family: Public Sans Thin;
+	font-family: "Open Sans Medium";
 	background: transparent;
-	/*background: red;*/
 	color: #fff;
-	/*font-weight: 500;*/
 }
 
 
@@ -131,15 +124,17 @@ QPushButton#logobtn
 	background: #161A1E;
 	color: #fff;
 	border-radius: 16px;
+	padding-top: 10px;
+	padding-bottom: 5px; 
 }
 
 /* QPushButton */
 QPushButton
 {
 	background-color: #656565;
-	/*background-color: #235AD1;*/
+	/*background-color: #2351F4;*/
 	color: #ffffff;
-	font-family: Public Sans Thin;
+	font-family: Open Sans;
 	font-size: 14px;
 	height: 25px;
 	border: 1px solid #272727;
@@ -182,10 +177,10 @@ QPushButton#profile
 {
 	text-align: center;
 	background: none;
-	width: 48;
-	height: 48;
+	width: 47;
+	height: 47;
 	border: none;
-	border-radius: 23px;
+	border-radius: 22px;
 	margin: 0px;
 	padding 0px;
 }
@@ -201,12 +196,12 @@ QPushButton#profile::disabled
 
 QPushButton#profile::hover
 {
-
+	background: #2351F4;
 }
 
 QPushButton#profile::pressed
 {
-	background-color: white;
+	
 }
 
 

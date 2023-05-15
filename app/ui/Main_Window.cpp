@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     installEventFilter(this);
     m_mainLay = new QVBoxLayout;
     m_mainLay->setContentsMargins(45, 32, 45, 32);
+    m_mainLay->setSpacing(25);
 
     m_logoPixmap = QPixmap(":/logo.svg");
 
@@ -40,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_logInPopup->hide();
     m_logInPopup->setObjectName("popup");
     m_logInPopup->setGeometry(200, 100, 400, 402);
-    //m_logInPopup->setStyleSheet(".QWidget {background: #161A1E; border: 1px solid #214AD8; border-radius: 10px;}");
 
     /* Connections */
     connect(m_topBarWidget, &TopBar::openLogInPopup, this, &MainWindow::openLogInPopup);
@@ -54,10 +54,12 @@ MainWindow::~MainWindow()
 void MainWindow::openLogInPopup()
 {
     if (m_logInPopup->isHidden())
+    {
         m_logInPopup->show();
+        m_logInPopup->raise();
+    }
     else
         m_logInPopup->hide();
-    qDebug() << m_logInPopup->isVisible();
 }
 
 void MainWindow::backToLibraryPage()
@@ -83,9 +85,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
+    // Recalculate Log In popup position
     QPoint popup_pos = QPoint(event->size().width() / 2 - m_logInPopup->size().width() / 2,
                               event->size().height() / 2 - m_logInPopup->size().height() / 2);
     m_logInPopup->move(popup_pos);
-    qDebug() << popup_pos;
 }
 

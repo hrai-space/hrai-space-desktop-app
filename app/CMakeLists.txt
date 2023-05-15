@@ -17,15 +17,17 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network REQUIRED)
 
 set(PROJECT_SOURCES
-        Main.cpp
-	Main_Window.h Main_Window.cpp
-	Top_Bar.h Top_Bar.cpp
-	Library_Page.h Library_Page.cpp
-        Game_Tile.h Game_Tile.cpp
-        Popup.h Popup.cpp
-        Login_Popup.h Login_Popup.cpp
-	Game_Page.h Game_Page.cpp
-	Picture_Widget.h Picture_Widget.cpp
+    Main.cpp
+	ui/Main_Window.h ui/Main_Window.cpp
+	ui/Top_Bar.h ui/Top_Bar.cpp
+	ui/Library_Page.h ui/Library_Page.cpp
+	ui/Game_Tile.h ui/Game_Tile.cpp
+	ui/Popup.h ui/Popup.cpp
+	ui/Login_Popup.h ui/Login_Popup.cpp
+	ui/Game_Page.h ui/Game_Page.cpp
+	ui/Picture_Widget.h ui/Picture_Widget.cpp
+	data/Game.h data/Game.cpp
+	data/User.h data/User.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

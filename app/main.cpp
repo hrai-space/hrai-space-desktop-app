@@ -1,4 +1,3 @@
-#include "main_window.h"
 #include <QApplication>
 #include <QFontDatabase>
 #include <QStyle>
@@ -8,13 +7,13 @@
 #include <QDebug>
 #include <QStyleFactory>
 
+#include "ui/Main_Window.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    int font_id = QFontDatabase::addApplicationFont(":/PublicSans-VariableFont_wght.ttf");
-    //QFontDatabase::addApplicationFont(":/PublicSans-Italic-VariableFont_wght.ttf");
+    int font_id = QFontDatabase::addApplicationFont(":/OpenSans-VariableFont_wdth,wght.ttf");
     //QFontDatabase::addApplicationFont(":/Bauhaus-93.ttf");
 
     QFile style_file(":/stylesheet.qss");

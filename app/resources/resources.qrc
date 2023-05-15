@@ -4,8 +4,6 @@
         <file>logo_white.png</file>
         <file>logo.svg</file>
         <file>ava.png</file>
-        <file>PublicSans-VariableFont_wght.ttf</file>
-        <file>PublicSans-Italic-VariableFont_wght.ttf</file>
-        <file>Bauhaus-93.ttf</file>
+        <file>OpenSans-VariableFont_wdth,wght.ttf</file>
     </qresource>
 </RCC>

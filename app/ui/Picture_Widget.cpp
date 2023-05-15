@@ -6,9 +6,9 @@
 #include "Picture_Widget.h"
 
 PictureWidget::PictureWidget(QWidget *parent)
-    : QWidget{parent}, m_xRadius{0}, m_yRadius{0}
+    : QWidget{parent}, m_xRadius{0}, m_yRadius{0}, m_ratioCoeff{0.5625}
 {
-
+    m_maxHeight = 669;
 }
 
 void PictureWidget::setPixmap(QPixmap *pixmap)
@@ -28,6 +28,25 @@ QSize PictureWidget::sizeHint() const
     if (m_pixmap != nullptr)
         return m_pixmap->size();
     return QSize(500, 500);
+}
+
+void PictureWidget::setRatio(int width, int height)
+{
+    m_ratioCoeff = (qreal) height / width;
+}
+
+void PictureWidget::scaleToWidth(int width)
+{
+    m_size.setWidth(width);
+    m_size.setHeight(m_ratioCoeff * width);
+    setFixedSize(m_size);
+}
+
+void PictureWidget::scaleToHeight(int height)
+{
+    m_size.setWidth(height / m_ratioCoeff);
+    m_size.setHeight(height);
+    setFixedSize(m_size);
 }
 
 void PictureWidget::paintEvent(QPaintEvent *event)
@@ -67,5 +86,6 @@ void PictureWidget::fitPixmap()
             m_pixmapPos.setY(0);
         //qDebug() << m_pixmapPos << " >";
     }
+    qDebug() << m_size;
 }
 

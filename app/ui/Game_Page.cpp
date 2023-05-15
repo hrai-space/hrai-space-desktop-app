@@ -12,7 +12,7 @@ GamePage::GamePage(QWidget *parent)
     m_mainLay->setSpacing(0);
 
     m_mainScrollLay = new QVBoxLayout;
-    m_mainScrollLay->setSizeConstraint(QLayout::SetMaximumSize);
+    //m_mainScrollLay->setSizeConstraint(QLayout::SetMaximumSize);
     m_mainScrollLay->setContentsMargins(0, 0, 0, 0);
     m_mainScrollLay->setSpacing(30);
     //m_mainScrollLay->setSizeConstraint(QLayout::SetMinimumSize);
@@ -31,11 +31,11 @@ GamePage::GamePage(QWidget *parent)
 
     /* Screenshots area */
     m_screenshotsHBoxLay = new QHBoxLayout;
-    //m_screenshotsHBoxLay->setSizeConstraint(QLayout::SetNoConstraint);
+    //m_screenshotsHBoxLay->setSizeConstraint(QLayout::SetFixedSize);
     m_screenshotsHBoxLay->setContentsMargins(20, 0, 20, 0);
     //m_screenshotsHBoxLay->setSpacing(10);
     m_screenshotsScrollWidget = new QWidget(this);
-    m_screenshotsScrollWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    //m_screenshotsScrollWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
     m_screenshotsScrollArea = new QScrollArea(this);
     //m_screenshotsScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_screenshotsScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -44,6 +44,9 @@ GamePage::GamePage(QWidget *parent)
     m_screenshotsScrollWidget->setLayout(m_screenshotsHBoxLay);
     //m_screenshotsScrollArea->setStyleSheet("border: solid 1px red;");
     m_screenshotsScrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    m_screenshotsScrollArea->setFixedHeight(180);
+    //m_screenshotsScrollArea->setFixedWidth(200);
+    //m_screenshotsScrollWidget->setFixedHeight(200);
 
 
     m_screenshotPixmap = QPixmap("../app/resources/pubg-1.jpg");
@@ -53,7 +56,8 @@ GamePage::GamePage(QWidget *parent)
         PictureWidget *pict = new PictureWidget(this);
         pict->setCornerRadius(8.0, 8.0);
         pict->setPixmap(&m_screenshotPixmap);
-        pict->setFixedSize(190, 107);
+        pict->scaleToHeight(150);
+        //pict->setFixedSize(190, 107);
         //pict->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         m_screenshotsHBoxLay->addWidget(pict);
     }
@@ -78,7 +82,7 @@ GamePage::GamePage(QWidget *parent)
 
 
     m_mainScrollLay->addWidget(m_pictureWidget, 0, Qt::AlignTop);
-    m_mainScrollLay->addWidget(m_screenshotsScrollArea, 1, Qt::AlignHCenter);
+    m_mainScrollLay->addWidget(m_screenshotsScrollArea, 0, Qt::AlignHCenter);
     m_mainScrollLay->addWidget(m_gameTitleLbl, 0, Qt::AlignLeft | Qt::AlignTop);
     m_mainScrollLay->addWidget(m_descriptionTxt, 1);
 
@@ -99,6 +103,6 @@ void GamePage::paintEvent(QPaintEvent *event)
 void GamePage::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    m_pictureWidget->setFixedSize(size().width(), 669);
-    m_screenshotsScrollArea->setFixedSize(size().width(), 110);
+    m_pictureWidget->scaleToWidth(size().width());
+    m_screenshotsScrollArea->setFixedWidth(size().width());
 }
