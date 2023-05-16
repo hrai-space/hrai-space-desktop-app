@@ -6,7 +6,7 @@
 #include "Main_Window.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), m_networkManager(new NetworkManager(this))
 {
     installEventFilter(this);
     m_mainLay = new QVBoxLayout;
@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     /* Top bar */
     m_topBarWidget = new TopBar(m_logoPixmap, this);
-
 
     /* Body area */
     m_bodyStackedLay = new QStackedLayout;
@@ -45,10 +44,14 @@ MainWindow::MainWindow(QWidget *parent)
     /* Connections */
     connect(m_topBarWidget, &TopBar::openLogInPopup, this, &MainWindow::openLogInPopup);
     connect(m_topBarWidget, &TopBar::backToLibraryPage, this, &MainWindow::backToLibraryPage);
+    connect(m_networkManager, &NetworkManager::responseGameLibrary,
+            m_libraryPage, &LibraryPage::fillGameLibrary);
+    connect(m_logInPopup, &LoginPopup::requestLogin, m_networkManager, &NetworkManager::requestLogin);
 }
 
 MainWindow::~MainWindow()
 {
+    delete m_networkManager;
 }
 
 void MainWindow::openLogInPopup()
@@ -64,6 +67,8 @@ void MainWindow::openLogInPopup()
 
 void MainWindow::backToLibraryPage()
 {
+    /* Request from website */
+    m_networkManager->requestGameLibrary();
     m_bodyStackedLay->setCurrentIndex(0);
     m_logInPopup->hide();
 }

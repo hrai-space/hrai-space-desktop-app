@@ -18,6 +18,7 @@ public:
     explicit LoginPopup(const QPixmap &logo, QWidget *parent = nullptr);
 
 signals:
+    void requestLogin(const QString &login, const QString &password);
 
 private:
     QVBoxLayout *m_mainLay;

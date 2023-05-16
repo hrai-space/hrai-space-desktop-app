@@ -8,8 +8,10 @@
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QHash>
 
 #include "Game_Tile.h"
+#include "data/Game.h"
 
 class LibraryPage : public QWidget
 {
@@ -18,6 +20,9 @@ public:
     explicit LibraryPage(QWidget *parent = nullptr);
 
 signals:
+
+public slots:
+    void fillGameLibrary(const QHash<int, Game*> &gameLibrary);
 
 private:
     QVBoxLayout *m_mainLay;

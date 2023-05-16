@@ -14,6 +14,7 @@
 #include "Library_Page.h"
 #include "Login_Popup.h"
 #include "Game_Page.h"
+#include "network/Network_Manager.h"
 
 class MainWindow : public QWidget
 {
@@ -29,6 +30,8 @@ protected:
     bool eventFilter(QObject* obj, QEvent* event) override;
     void resizeEvent(QResizeEvent  *event) override;
 private:
+    NetworkManager *m_networkManager;
+
     QVBoxLayout *m_mainLay;
 
     QPixmap m_logoPixmap;

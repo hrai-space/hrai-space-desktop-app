@@ -28,6 +28,7 @@ set(PROJECT_SOURCES
 	ui/Picture_Widget.h ui/Picture_Widget.cpp
 	data/Game.h data/Game.cpp
 	data/User.h data/User.cpp
+	network/Network_Manager.h network/Network_Manager.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

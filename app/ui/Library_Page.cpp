@@ -46,3 +46,8 @@ LibraryPage::LibraryPage(QWidget *parent)
     m_mainLay->addWidget(m_scrollArea);
 }
 
+void LibraryPage::fillGameLibrary(const QHash<int, Game *> &gameLibrary)
+{
+    qDebug() << "fillGameLibrary";
+}
+

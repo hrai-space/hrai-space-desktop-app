@@ -9,18 +9,27 @@
 class Game
 {
 public:
-    Game(int id, QString title, QString description,
-         QStringList screenshotLinks, QStringList fileLinks,
-         QStringList fileNames);
+    Game(int id, QString title,
+         QString shortDescription, QString iconLink);
     int id() const;
     QString title() const;
+    QString shortDescription() const;
     QString description() const;
+    QString iconLink() const;
     QStringList screenshotLinks() const;
     QStringList fileLinks() const;
     QStringList fileNames() const;
+    void setDescription(const QString &description);
+    void setScreenshotLinks(const QStringList &screenshotLinks);
+    void setFileLinks(const QStringList &fileLinks);
+    void setFileNames(const QStringList &fileNames);
+
 private:
     int m_id;
     QString m_title;
+    QString m_shortDescription;
+    QString m_iconLink;
+
     QString m_description;
     QStringList m_screenshotLinks;
     QStringList m_fileLinks;
