@@ -14,7 +14,7 @@ GamePage::GamePage(QWidget *parent)
     m_mainScrollLay = new QVBoxLayout;
     //m_mainScrollLay->setSizeConstraint(QLayout::SetMaximumSize);
     m_mainScrollLay->setContentsMargins(0, 0, 0, 0);
-    m_mainScrollLay->setSpacing(30);
+    m_mainScrollLay->setSpacing(17);
     //m_mainScrollLay->setSizeConstraint(QLayout::SetMinimumSize);
     m_centralWidget = new QWidget(this);
     m_centralWidget->setObjectName("gamepg");
@@ -44,7 +44,7 @@ GamePage::GamePage(QWidget *parent)
     m_screenshotsScrollWidget->setLayout(m_screenshotsHBoxLay);
     //m_screenshotsScrollArea->setStyleSheet("border: solid 1px red;");
     m_screenshotsScrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    m_screenshotsScrollArea->setFixedHeight(180);
+    m_screenshotsScrollArea->setFixedHeight(190);
     //m_screenshotsScrollArea->setFixedWidth(200);
     //m_screenshotsScrollWidget->setFixedHeight(200);
 
@@ -56,7 +56,7 @@ GamePage::GamePage(QWidget *parent)
         PictureWidget *pict = new PictureWidget(this);
         pict->setCornerRadius(8.0, 8.0);
         pict->setPixmap(&m_screenshotPixmap);
-        pict->scaleToHeight(150);
+        pict->scaleToHeight(170);
         //pict->setFixedSize(190, 107);
         //pict->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         m_screenshotsHBoxLay->addWidget(pict);
@@ -71,26 +71,20 @@ GamePage::GamePage(QWidget *parent)
 
     m_gameTitleLbl = new QLabel("Dark Story", this);
     m_gameTitleLbl->setObjectName("pgtitle");
+    m_gameTitleLbl->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
     m_descriptionTxt = new QLabel("Hello, world!", this);
-//    m_descriptionTxt->setTextInteractionFlags(Qt::TextSelectableByMouse);
-//    m_descriptionTxt->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-//    for (int var = 0; var < 50; ++var)
-//    {
-//        m_descriptionTxt->setText(m_descriptionTxt->text() + QString("Hello\n"));
-//    }
-
+    m_descriptionTxt->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    m_descriptionTxt->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    for (int var = 0; var < 50; ++var)
+    {
+        m_descriptionTxt->setText(m_descriptionTxt->text() + QString("Hello\n"));
+    }
 
     m_mainScrollLay->addWidget(m_pictureWidget, 0, Qt::AlignTop);
     m_mainScrollLay->addWidget(m_screenshotsScrollArea, 0, Qt::AlignHCenter);
-    m_mainScrollLay->addWidget(m_gameTitleLbl, 0, Qt::AlignLeft | Qt::AlignTop);
+    m_mainScrollLay->addWidget(m_gameTitleLbl, 0, Qt::AlignHCenter);
     m_mainScrollLay->addWidget(m_descriptionTxt, 1);
-
-    for (int var = 0; var < 50; ++var)
-    {
-        m_descriptionTxt = new QLabel(QString("Label %1").arg(var), this);
-        m_mainScrollLay->addWidget(m_descriptionTxt, 0);
-    }
 
     setLayout(m_mainLay);
 }

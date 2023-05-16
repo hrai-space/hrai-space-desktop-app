@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     installEventFilter(this);
     m_mainLay = new QVBoxLayout;
-    m_mainLay->setContentsMargins(45, 32, 45, 32);
+    m_mainLay->setContentsMargins(35, 32, 35, 32);
     m_mainLay->setSpacing(25);
 
     m_logoPixmap = QPixmap(":/logo.svg");

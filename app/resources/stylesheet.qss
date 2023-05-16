@@ -112,7 +112,7 @@ QLabel
 
 QLabel#pgtitle
 {
-	font-weight: 500;
+	font-weight: bold;
 	font-size: 25px;
 	color: #fff;
 }
