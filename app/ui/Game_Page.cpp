@@ -44,7 +44,7 @@ GamePage::GamePage(QWidget *parent)
     m_screenshotsScrollWidget->setLayout(m_screenshotsHBoxLay);
     //m_screenshotsScrollArea->setStyleSheet("border: solid 1px red;");
     m_screenshotsScrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    m_screenshotsScrollArea->setFixedHeight(190);
+    m_screenshotsScrollArea->setFixedHeight(200);
     //m_screenshotsScrollArea->setFixedWidth(200);
     //m_screenshotsScrollWidget->setFixedHeight(200);
 

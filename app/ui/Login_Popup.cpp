@@ -15,10 +15,12 @@ LoginPopup::LoginPopup(const QPixmap &logo, QWidget *parent)
 
     m_usernameEdit = new QLineEdit(this);
     m_usernameEdit->setPlaceholderText("Username or email");
+    m_usernameEdit->setText("maximin");
 
     m_passwordEdit = new QLineEdit(this);
     m_passwordEdit->setPlaceholderText("Password");
     m_passwordEdit->setEchoMode(QLineEdit::Password);
+    m_passwordEdit->setText("12345678ded");
 
     m_signInBtn = new QPushButton("Sign In", this);
 
