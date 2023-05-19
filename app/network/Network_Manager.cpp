@@ -19,9 +19,7 @@ NetworkManager::~NetworkManager()
 {
     delete m_user;
     foreach (auto game, m_gameLibraryHash)
-    {
         delete game;
-    }
     m_gameLibraryHash.clear();
 }
 
@@ -79,6 +77,8 @@ void NetworkManager::onResponse(QNetworkReply *reply)
     }
     case GAME_LIB:
     {
+        foreach (auto game, m_gameLibraryHash)
+            delete game;
         m_gameLibraryHash.clear();
         QJsonArray json_array = json_doc.array();
         for (auto item : json_array)

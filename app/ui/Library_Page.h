@@ -10,7 +10,7 @@
 #include <QScrollArea>
 #include <QHash>
 
-#include "Game_Tile.h"
+
 #include "data/Game.h"
 
 class LibraryPage : public QWidget
@@ -25,6 +25,8 @@ public slots:
     void fillGameLibrary(const QHash<int, Game*> &gameLibrary);
 
 private:
+    void clearGameLibrary();
+
     QVBoxLayout *m_mainLay;
     QGridLayout *m_gridLay;
     QScrollArea *m_scrollArea;

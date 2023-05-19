@@ -36,6 +36,8 @@ private:
     QPointF m_pixmapPos;
     qreal m_padding, m_offset;
 
+    QString m_title;
+
     bool m_isMouseInside;
 };
 

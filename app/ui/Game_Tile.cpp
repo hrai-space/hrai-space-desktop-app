@@ -14,7 +14,7 @@ GameTile::GameTile(QWidget *parent)
 
 void GameTile::setTitle(const QString &title)
 {
-
+    m_title = title;
 }
 
 void GameTile::setCover(QPixmap pixmap)
@@ -67,12 +67,12 @@ void GameTile::paintEvent(QPaintEvent *event)
 
     // Title text
     QFont font = painter.font();
-    font.setFamily("Public Sans Thin Regular");
+    //font.setFamily("Public Sans Thin Regular");
     //font.setWeight(60);
     font.setPointSize(12);
     painter.setFont(font);
     painter.setPen(pen_title);
-    painter.drawText(m_titlePos, "Dark Story");
+    painter.drawText(m_titlePos, m_title);
 }
 
 void GameTile::enterEvent(QEvent *event)
