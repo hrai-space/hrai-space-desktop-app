@@ -2,6 +2,7 @@
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QFile>
 
 #include "Main_Window.h"
 
@@ -52,8 +53,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_libraryPage, &LibraryPage::requestGame, m_networkManager, &NetworkManager::requestGame);
     connect(m_networkManager, &NetworkManager::responseGame, this, &MainWindow::openGamePage);
 
-    m_networkManager->requestLogin("severus", "x01abs10js");
-
+    QFile user_data_file("userdata");
+    if (user_data_file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&user_data_file);
+        QString login = in.readLine();
+        QString password = in.readLine();
+        m_logInPopup->setLoginData(login, password);
+        m_networkManager->requestLogin(login, password);
+        user_data_file.close();
+    }
+    else
+    {
+        m_logInPopup->show();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -78,23 +91,29 @@ void MainWindow::responseLogin(const User *user)
         return;
     backToLibraryPage();
     m_topBarWidget->setAvatar(user->avatartLink());
+    QFile user_data_file("userdata");
+    if (user_data_file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream out(&user_data_file);
+        out << user->login() << "\n" << user->password();
+    }
 }
 
 void MainWindow::backToLibraryPage()
 {
+    /* Remove last opened GamePage */
+    QLayoutItem *child;
+    for (int i = 1; i < m_bodyStackedLay->count(); ++i)
+    {
+        child = m_bodyStackedLay->takeAt(i);
+        delete child->widget();
+        delete child;
+    }
+    /* Request from website */
     if (m_bodyStackedLay->currentIndex() == 0)
     {
-        /* Request from website */
         m_networkManager->requestGameLibrary();
         m_logInPopup->hide();
-        /* Remove last opened GamePage */
-        QLayoutItem *child;
-        for (int i = 1; i < m_bodyStackedLay->count(); ++i)
-        {
-            child = m_bodyStackedLay->takeAt(i);
-            delete child->widget();
-            delete child;
-        }
     }
     m_bodyStackedLay->setCurrentIndex(0);
 }

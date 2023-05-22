@@ -15,12 +15,10 @@ LoginPopup::LoginPopup(const QPixmap &logo, QWidget *parent)
 
     m_usernameEdit = new QLineEdit(this);
     m_usernameEdit->setPlaceholderText("Ім'я користувача чи пошта");
-    m_usernameEdit->setText("severus");
 
     m_passwordEdit = new QLineEdit(this);
     m_passwordEdit->setPlaceholderText("Пароль");
     m_passwordEdit->setEchoMode(QLineEdit::Password);
-    m_passwordEdit->setText("x01abs10js");
 
     m_signInBtn = new QPushButton("Увійти", this);
 
@@ -40,4 +38,10 @@ LoginPopup::LoginPopup(const QPixmap &logo, QWidget *parent)
                     return;
                 emit requestLogin(username, password);
             });
+}
+
+void LoginPopup::setLoginData(const QString &login, const QString &password)
+{
+    m_usernameEdit->setText(login);
+    m_passwordEdit->setText(password);
 }

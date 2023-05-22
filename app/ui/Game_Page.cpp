@@ -6,7 +6,7 @@
 #include "Game_Page.h"
 
 GamePage::GamePage(const Game *game, QWidget *parent)
-    : QWidget{parent}, m_game{game}
+    : QWidget{parent}, m_unzipper{new Unzipper}, m_game{game}
 {
     m_mainLay = new QVBoxLayout;
     m_mainLay->setContentsMargins(0, 0, 0, 0);
@@ -96,7 +96,6 @@ GamePage::GamePage(const Game *game, QWidget *parent)
         m_linkButtons.append(link_btn);
         m_mainScrollLay->addWidget(link_btn, 0, Qt::AlignLeft);
     }
-
     setLayout(m_mainLay);
 }
 
@@ -121,6 +120,10 @@ void GamePage::downloadAttachedFile()
     {
         m_downloadDir = m_fileDialog.directory();
     }
-    qDebug() << "[INFO] Dir: " << m_downloadDir;
-    qDebug() << "[INFO] Link: " << m_game->fileLinks()[link_n];
+    QString filename = m_game->fileNames().at(link_n);
+    QString name = filename;
+    name.replace(".zip", "");
+    QString download_dir = QString("%1/%2").arg(m_downloadDir.absolutePath(), name);
+    QDir().mkdir(download_dir);
+    m_unzipper->exctractFiles(m_game->fileLinks().at(link_n), download_dir, filename);
 }

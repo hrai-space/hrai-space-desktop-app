@@ -16,6 +16,7 @@ class LoginPopup : public Popup
     Q_OBJECT
 public:
     explicit LoginPopup(const QPixmap &logo, QWidget *parent = nullptr);
+    void setLoginData(const QString &login, const QString &password);
 
 signals:
     void requestLogin(const QString &login, const QString &password);

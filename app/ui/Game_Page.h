@@ -15,6 +15,7 @@
 
 #include "Picture_Widget.h"
 #include "data/Game.h"
+#include "data/Unzipper.h"
 
 class GamePage : public QWidget
 {
@@ -53,6 +54,8 @@ private:
 
     QFileDialog m_fileDialog;
     QDir m_downloadDir;
+
+    Unzipper *m_unzipper;
 };
 
 #endif // GAMEPAGE_H

@@ -19,7 +19,7 @@ public:
     QString password() const;
 
     QString avatartLink() const;
-    void setAvatartLink(const QString &newAvatartLink);
+    void setAvatartLink(const QString &avatartLink);
 
 private:
     int m_id;
