@@ -31,16 +31,10 @@ LibraryPage::LibraryPage(QWidget *parent)
 
 void LibraryPage::fillGameLibrary(const QHash<int, Game *> &gameLibrary)
 {
-    qDebug() << "fillGameLibrary";
     clearGameLibrary();
     int row = 0, col = 0;
     foreach (auto game, gameLibrary)
     {
-        //qDebug() << "FILE: " << game->screenshotLinks().at(0);
-        //GameTile *tile = new GameTile(game->title(), game->id(), game->iconLink(), this);
-        //GameTile *tile = new GameTile(game->title(), game->id(), "https://hraispacestorage.fra1.digitaloceanspaces.com/images/cb43f538-18af-4c40-888b-6f390c11e27c", this);
-        //GameTile *tile = new GameTile(game->title(), game->id(), "https://hraispacestorage.fra1.digitaloceanspaces.com/images/Pigeon1.png", this);
-        //GameTile *tile = new GameTile(game->title(), game->id(), "https://hraispacestorage.fra1.digitaloceanspaces.com/images/cb43f538-18af-4c40-888b-6f390c11e27c", this);
         GameTile *tile = new GameTile(game->title(), game->id(), game->iconLink(), this);
         tile->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
         connect(tile, &GameTile::opened, this, [this](int id)

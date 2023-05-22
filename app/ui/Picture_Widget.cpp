@@ -18,6 +18,11 @@ PictureWidget::PictureWidget(int id, QWidget *parent)
             });
 }
 
+PictureWidget::~PictureWidget()
+{
+    delete m_webDownloader;
+}
+
 void PictureWidget::setPixmap(QPixmap pixmap)
 {
     m_pixmap = pixmap;

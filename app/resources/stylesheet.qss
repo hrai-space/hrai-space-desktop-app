@@ -2,6 +2,8 @@
 {
 	font-family: Open Sans;
 	font-size: 17px;
+	color: white;
+	selection-background-color: #238BF4;
 }
 
 QScrollArea
@@ -103,6 +105,7 @@ QWidget#gamepg QWidget
 
 QWidget#gamepg QLabel#descr
 {
+	selection-background-color: #238BF4;
 	padding: 20px;
 }
 
@@ -141,13 +144,15 @@ QLabel#pgtitle
 	font-weight: bold;
 	font-size: 25px;
 	color: #fff;
+	selection-background-color: #238BF4;
 }
 
 QPushButton#logobtn
 {
 	font-size: 25px;
 	border: none;
-	background: #161A1E;
+	background: transparent;
+	/*background: #161A1E;*/
 	color: #fff;
 	border-radius: 16px;
 	padding-top: 10px;

@@ -71,12 +71,15 @@ GamePage::GamePage(const Game *game, QWidget *parent)
     //m_gameTitleLbl->setTextFormat(Qt::PlainText);
 
     /* Description */
-    m_descriptionTxt = new QLabel(m_game->description(), this);
+    m_descriptionTxt = new QLabel(m_game->description().replace("var(--theme-link)", "white"), this);
     m_descriptionTxt->setObjectName("descr");
     m_descriptionTxt->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_descriptionTxt->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     m_descriptionTxt->setWordWrap(true);
-    m_descriptionTxt->setStyleSheet("QLabel {padding: 20px;}");
+    //m_descriptionTxt->setStyleSheet("QLabel {padding: 20px; selection-background-color: #238BF4;}");
+    m_descriptionTxt->setTextFormat(Qt::RichText);
+    m_descriptionTxt->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    m_descriptionTxt->setOpenExternalLinks(true);
 
 
     /* Main layout */

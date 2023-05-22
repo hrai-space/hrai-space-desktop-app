@@ -33,6 +33,11 @@ GameTile::GameTile(const QString &title, int id, const QString &coverFilePath, Q
             });
 }
 
+GameTile::~GameTile()
+{
+    delete m_webDownloader;
+}
+
 void GameTile::setTitle(const QString &title)
 {
     m_title = title;

@@ -29,15 +29,15 @@ void Unzipper::unzipFile(const QString& zipPath, const QString& destPath)
 
     if (QSysInfo::productType() == "windows")
     {
-        unzipCommand = QString("tar -xf %1 -C %2").arg(zipPath, destPath);
+        unzipCommand = QString("tar -xf \"%1\" -C \"%2\"").arg(zipPath, destPath);
     }
     else if (QSysInfo::productType() == "macos")
     {
-        unzipCommand = QString("unzip -o %1 -d %2").arg(zipPath, destPath);
+        unzipCommand = QString("unzip -o \"%1\" -d \"%2\"").arg(zipPath, destPath);
     }
     else if (QSysInfo::productType() == "linux")
     {
-        unzipCommand = QString("unzip -o %1 -d %2").arg(zipPath, destPath);
+        unzipCommand = QString("unzip -o \"%1\" -d \"%2\"").arg(zipPath, destPath);
     }
     else
     {

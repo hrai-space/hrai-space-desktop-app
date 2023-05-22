@@ -15,6 +15,7 @@ class GameTile : public QAbstractButton
 public:
     explicit GameTile(QWidget *parent = nullptr);
     explicit GameTile(const QString &title, int id, const QString &coverFilePath, QWidget *parent = nullptr);
+    ~GameTile();
     void setTitle(const QString &title);
     void setCover(QPixmap pixmap);
     QSize sizeHint() const override;

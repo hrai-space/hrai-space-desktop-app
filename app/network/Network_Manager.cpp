@@ -21,6 +21,7 @@ NetworkManager::~NetworkManager()
     foreach (auto game, m_gameLibraryHash)
         delete game;
     m_gameLibraryHash.clear();
+    delete m_networkAccessManager;
 }
 
 void NetworkManager::requestLogin(const QString &login, const QString &password)
@@ -133,5 +134,5 @@ void NetworkManager::onResponse(QNetworkReply *reply)
     default:
         break;
     }
-    //qDebug() << response_data;
+    qDebug() << "[RESPONSE]\n" << response_data;
 }

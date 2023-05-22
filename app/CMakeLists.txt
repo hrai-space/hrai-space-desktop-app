@@ -44,15 +44,16 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 else()
     if(ANDROID)
-        add_library(hrai-space-desktop SHARED
+	add_library(hrai-space-desktop SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(hrai-space-desktop
+	add_executable(hrai-space-desktop
             ${PROJECT_SOURCES}
             resources/resources.qrc
+	    resources/project.rc
         )
     endif()
 endif()
@@ -71,3 +72,5 @@ set_target_properties(hrai-space-desktop PROPERTIES
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(hrai-space-desktop)
 endif()
+
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Hrai-Space-${CMAKE_SYSTEM_PROCESSOR}")

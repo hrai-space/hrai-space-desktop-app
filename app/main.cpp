@@ -12,9 +12,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
-    int font_id = QFontDatabase::addApplicationFont(":/OpenSans-VariableFont_wdth,wght.ttf");
-    //QFontDatabase::addApplicationFont(":/Bauhaus-93.ttf");
+    QFontDatabase::addApplicationFont(":/OpenSans-VariableFont_wdth,wght.ttf");
 
     QFile style_file(":/stylesheet.qss");
     style_file.open(QFile::ReadOnly);
@@ -23,6 +21,7 @@ int main(int argc, char *argv[])
 
     MainWindow main_window;
     main_window.setWindowTitle("Hrai-Space");
+    main_window.setWindowIcon(QIcon(":/icon.png"));
     main_window.resize(1280, 1000);
     //main_window.setFixedSize(1547, 1000);
     main_window.show();

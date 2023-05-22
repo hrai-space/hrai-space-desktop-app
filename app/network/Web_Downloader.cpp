@@ -13,6 +13,11 @@ WebDownloader::WebDownloader(QObject *parent)
                      this, &WebDownloader::onResponse);
 }
 
+WebDownloader::~WebDownloader()
+{
+    delete m_networkAccessManager;
+}
+
 void WebDownloader::downloadFromWeb(const QString &url)
 {
     m_downloadType = DOWNLOAD_TYPE::TO_DATA;

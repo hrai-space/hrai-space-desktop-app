@@ -15,6 +15,7 @@ class WebDownloader : public QObject
     Q_OBJECT
 public:
     explicit WebDownloader(QObject *parent = nullptr);
+    ~WebDownloader();
     void downloadFromWeb(const QString &url);
     void downloadFromWebToFile(const QString &url, const QString &dir, const QString &fileName);
 signals:

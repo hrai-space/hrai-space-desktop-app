@@ -13,6 +13,7 @@ class PictureWidget : public QAbstractButton
     Q_OBJECT
 public:
     explicit PictureWidget(int id = 0, QWidget *parent = nullptr);
+    ~PictureWidget();
     void setPixmap(QPixmap pixmap);
     void setCornerRadius(qreal xRadius, qreal yRadius);
     void setRatio(int width, int height);

@@ -22,22 +22,14 @@ TopBar::TopBar(const QPixmap &logo, QWidget *parent)
     //m_findTxtEdit = new QLineEdit(this);
     //m_findTxtEdit->setPlaceholderText("Пошук ігор");
 
-
-//    m_profileBtn = new QPushButton(this);
-//    m_profileBtn->setObjectName("profile");
-//    m_profileBtn->setIcon(m_avatarPixmap);
-//    m_profileBtn->setIconSize(QSize(43, 43));
-    //m_profileBtn->setFixedSize(45, 45);
-
     QPixmap default_avatar_pixmap = QPixmap(":/ava.png");
-    //default_avatar_pixmap = default_avatar_pixmap.scaledToWidth(43, Qt::SmoothTransformation);
 
     m_profileBtn = new PictureWidget(0, this);
     m_profileBtn->setRatio(1, 1);
     m_profileBtn->setPixmap(default_avatar_pixmap);
     m_profileBtn->setObjectName("profile");
-    m_profileBtn->scaleToHeight(43);
-    m_profileBtn->setCornerRadius(43.0/2.0, 43.0/2.0);
+    m_profileBtn->scaleToHeight(50);
+    m_profileBtn->setCornerRadius(50/2.0, 50/2.0);
 
 
     m_mainLay->addWidget(m_logoBtn);
@@ -51,6 +43,6 @@ TopBar::TopBar(const QPixmap &logo, QWidget *parent)
 void TopBar::setAvatar(const QString &link)
 {
     m_profileBtn->loadPixmapFromWeb(link);
-    m_profileBtn->scaleToHeight(43);
+    m_profileBtn->scaleToHeight(50);
 }
 

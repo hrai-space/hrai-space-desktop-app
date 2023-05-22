@@ -3,6 +3,8 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QFile>
+#include <QDir>
+#include <QStandardPaths>
 
 #include "Main_Window.h"
 
@@ -53,7 +55,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_libraryPage, &LibraryPage::requestGame, m_networkManager, &NetworkManager::requestGame);
     connect(m_networkManager, &NetworkManager::responseGame, this, &MainWindow::openGamePage);
 
-    QFile user_data_file("userdata");
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    path.append("/Hrai-Space");
+    QDir().mkdir(path);
+    path.append("/userdata");
+    QFile user_data_file(path);
     if (user_data_file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QTextStream in(&user_data_file);
@@ -91,7 +97,11 @@ void MainWindow::responseLogin(const User *user)
         return;
     backToLibraryPage();
     m_topBarWidget->setAvatar(user->avatartLink());
-    QFile user_data_file("userdata");
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    path.append("/Hrai-Space");
+    QDir().mkdir(path);
+    path.append("/userdata");
+    QFile user_data_file(path);
     if (user_data_file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         QTextStream out(&user_data_file);
@@ -113,8 +123,8 @@ void MainWindow::backToLibraryPage()
     if (m_bodyStackedLay->currentIndex() == 0)
     {
         m_networkManager->requestGameLibrary();
-        m_logInPopup->hide();
     }
+    m_logInPopup->hide();
     m_bodyStackedLay->setCurrentIndex(0);
 }
 

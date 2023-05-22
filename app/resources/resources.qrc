@@ -3,6 +3,7 @@
         <file>stylesheet.qss</file>
         <file>logo-full.svg</file>
         <file>logo.svg</file>
+        <file>icon.png</file>
         <file>ava.png</file>
         <file>OpenSans-VariableFont_wdth,wght.ttf</file>
     </qresource>
