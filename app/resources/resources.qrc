@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>stylesheet.qss</file>
-        <file>logo_white.png</file>
+        <file>logo-full.svg</file>
         <file>logo.svg</file>
         <file>ava.png</file>
         <file>OpenSans-VariableFont_wdth,wght.ttf</file>

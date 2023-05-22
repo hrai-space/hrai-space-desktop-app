@@ -9,10 +9,7 @@ TopBar::TopBar(const QPixmap &logo, QWidget *parent)
     m_mainLay->setSpacing(50);
     setLayout(m_mainLay);
 
-    m_logoPixmap = m_logoPixmap.scaledToWidth(120, Qt::SmoothTransformation);
-
-    m_avatarPixmap = QPixmap(":/ava.png");
-    m_avatarPixmap = m_avatarPixmap.scaledToWidth(43, Qt::SmoothTransformation);
+    m_logoPixmap = m_logoPixmap.scaledToHeight(30, Qt::SmoothTransformation);
 
     m_logoBtn = new QPushButton(this);
     m_logoBtn->setObjectName("logobtn");
@@ -22,21 +19,38 @@ TopBar::TopBar(const QPixmap &logo, QWidget *parent)
     m_logoBtn->setIcon(m_logoPixmap);
     m_logoBtn->setIconSize(m_logoBtn->size());
 
-    m_findTxtEdit = new QLineEdit(this);
-    //m_findTxtEdit->setFixedSize(200, 70);
-    m_findTxtEdit->setPlaceholderText("Search games");
+    //m_findTxtEdit = new QLineEdit(this);
+    //m_findTxtEdit->setPlaceholderText("Пошук ігор");
 
-    m_profileBtn = new QPushButton(this);
-    m_profileBtn->setObjectName("profile");
-    m_profileBtn->setIcon(m_avatarPixmap);
-    m_profileBtn->setIconSize(QSize(43, 43));
+
+//    m_profileBtn = new QPushButton(this);
+//    m_profileBtn->setObjectName("profile");
+//    m_profileBtn->setIcon(m_avatarPixmap);
+//    m_profileBtn->setIconSize(QSize(43, 43));
     //m_profileBtn->setFixedSize(45, 45);
 
+    QPixmap default_avatar_pixmap = QPixmap(":/ava.png");
+    //default_avatar_pixmap = default_avatar_pixmap.scaledToWidth(43, Qt::SmoothTransformation);
+
+    m_profileBtn = new PictureWidget(0, this);
+    m_profileBtn->setRatio(1, 1);
+    m_profileBtn->setPixmap(default_avatar_pixmap);
+    m_profileBtn->setObjectName("profile");
+    m_profileBtn->scaleToHeight(43);
+    m_profileBtn->setCornerRadius(43.0/2.0, 43.0/2.0);
+
+
     m_mainLay->addWidget(m_logoBtn);
-    m_mainLay->addWidget(m_findTxtEdit, 1, Qt::AlignRight);
-    m_mainLay->addWidget(m_profileBtn);
+    //m_mainLay->addWidget(m_findTxtEdit, 1, Qt::AlignRight);
+    m_mainLay->addWidget(m_profileBtn, 0, Qt::AlignRight);
 
     connect(m_profileBtn, &QPushButton::released, this, &TopBar::openLogInPopup);
     connect(m_logoBtn, &QPushButton::released, this, &TopBar::backToLibraryPage);
+}
+
+void TopBar::setAvatar(const QString &link)
+{
+    m_profileBtn->loadPixmapFromWeb(link);
+    m_profileBtn->scaleToHeight(43);
 }
 

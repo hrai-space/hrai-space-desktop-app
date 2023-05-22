@@ -29,6 +29,7 @@ set(PROJECT_SOURCES
 	data/Game.h data/Game.cpp
 	data/User.h data/User.cpp
 	network/Network_Manager.h network/Network_Manager.cpp
+	network/Web_Downloader.h network/Web_Downloader.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

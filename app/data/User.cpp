@@ -44,3 +44,13 @@ QString User::password() const
     return m_password;
 }
 
+QString User::avatartLink() const
+{
+    return m_avatartLink;
+}
+
+void User::setAvatartLink(const QString &avatartLink)
+{
+    m_avatartLink = avatartLink;
+}
+

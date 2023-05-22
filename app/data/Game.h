@@ -14,8 +14,8 @@ public:
     int id() const;
     QString title() const;
     QString shortDescription() const;
-    QString description() const;
     QString iconLink() const;
+    QString description() const;
     QStringList screenshotLinks() const;
     QStringList fileLinks() const;
     QStringList fileNames() const;

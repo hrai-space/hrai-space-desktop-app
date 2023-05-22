@@ -20,6 +20,7 @@ public:
     explicit LibraryPage(QWidget *parent = nullptr);
 
 signals:
+    void requestGame(int gameId);
 
 public slots:
     void fillGameLibrary(const QHash<int, Game*> &gameLibrary);

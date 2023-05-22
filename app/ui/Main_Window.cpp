@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_mainLay->setSpacing(25);
 
     m_logoPixmap = QPixmap(":/logo.svg");
+    m_logoFullPixmap = QPixmap(":/logo-full.svg");
 
     /* Top bar */
     m_topBarWidget = new TopBar(m_logoPixmap, this);
@@ -25,10 +26,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_libraryPage = new LibraryPage(this);
     m_bodyStackedLay->addWidget(m_libraryPage);
-    m_gamePage = new GamePage(this);
-    m_gamePage->setObjectName("gamepg");
-    m_bodyStackedLay->addWidget(m_gamePage);
-    m_bodyStackedLay->setCurrentIndex(1);
+    //m_gamePage = new GamePage(this);
+    //m_gamePage->setObjectName("gamepg");
+    //m_bodyStackedLay->addWidget(m_gamePage);
+    //m_bodyStackedLay->setCurrentIndex(0);
 
 
     m_mainLay->addWidget(m_topBarWidget, 0, Qt::AlignTop);
@@ -36,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     setLayout(m_mainLay);
 
     /* Lpg In popup */
-    m_logInPopup = new LoginPopup(m_logoPixmap, this);
+    m_logInPopup = new LoginPopup(m_logoFullPixmap, this);
     m_logInPopup->hide();
     m_logInPopup->setObjectName("popup");
     m_logInPopup->setGeometry(200, 100, 400, 402);
@@ -44,9 +45,15 @@ MainWindow::MainWindow(QWidget *parent)
     /* Connections */
     connect(m_topBarWidget, &TopBar::openLogInPopup, this, &MainWindow::openLogInPopup);
     connect(m_topBarWidget, &TopBar::backToLibraryPage, this, &MainWindow::backToLibraryPage);
-    connect(m_networkManager, &NetworkManager::responseGameLibrary,
-            m_libraryPage, &LibraryPage::fillGameLibrary);
+    //connect(m_topBarWidget, &TopBar::reloadLibraryPage, this, &MainWindow::reloadLibraryPage);
+    connect(m_networkManager, &NetworkManager::responseGameLibrary, m_libraryPage, &LibraryPage::fillGameLibrary);
     connect(m_logInPopup, &LoginPopup::requestLogin, m_networkManager, &NetworkManager::requestLogin);
+    connect(m_networkManager, &NetworkManager::responseLogin, this, &MainWindow::responseLogin);
+    connect(m_libraryPage, &LibraryPage::requestGame, m_networkManager, &NetworkManager::requestGame);
+    connect(m_networkManager, &NetworkManager::responseGame, this, &MainWindow::openGamePage);
+
+    m_networkManager->requestLogin("severus", "x01abs10js");
+
 }
 
 MainWindow::~MainWindow()
@@ -65,12 +72,39 @@ void MainWindow::openLogInPopup()
         m_logInPopup->hide();
 }
 
+void MainWindow::responseLogin(const User *user)
+{
+    if (user->id() == 0)
+        return;
+    backToLibraryPage();
+    m_topBarWidget->setAvatar(user->avatartLink());
+}
+
 void MainWindow::backToLibraryPage()
 {
-    /* Request from website */
-    m_networkManager->requestGameLibrary();
+    if (m_bodyStackedLay->currentIndex() == 0)
+    {
+        /* Request from website */
+        m_networkManager->requestGameLibrary();
+        m_logInPopup->hide();
+        /* Remove last opened GamePage */
+        QLayoutItem *child;
+        for (int i = 1; i < m_bodyStackedLay->count(); ++i)
+        {
+            child = m_bodyStackedLay->takeAt(i);
+            delete child->widget();
+            delete child;
+        }
+    }
     m_bodyStackedLay->setCurrentIndex(0);
-    m_logInPopup->hide();
+}
+
+void MainWindow::openGamePage(const Game *game)
+{
+    GamePage *game_page = new GamePage(game, this);
+    game_page->setObjectName("gamepg");
+    m_bodyStackedLay->addWidget(game_page);
+    m_bodyStackedLay->setCurrentIndex(m_bodyStackedLay->count()-1);
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -90,7 +124,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    // Recalculate Log In popup position
+    // Recalculate LogInPopup position
     QPoint popup_pos = QPoint(event->size().width() / 2 - m_logInPopup->size().width() / 2,
                               event->size().height() / 2 - m_logInPopup->size().height() / 2);
     m_logInPopup->move(popup_pos);

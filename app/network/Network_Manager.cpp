@@ -46,12 +46,7 @@ void NetworkManager::requestGameLibrary()
 void NetworkManager::requestGame(const int gameId)
 {
     m_requestType = REQUEST_TYPE::GAME;
-    if (m_gameLibraryHash.contains(gameId))
-    {
-        emit responseGame(m_gameLibraryHash.value(gameId));
-        return;
-    }
-    QString url = m_baseUrl + QString("get/game/%1").arg(m_user->id());
+    QString url = m_baseUrl + QString("get/game/%1").arg(gameId);
     qDebug() << "[REQUEST] " << url;
     m_request.setUrl(url);
     m_networkAccessManager->get(m_request);
@@ -72,6 +67,7 @@ void NetworkManager::onResponse(QNetworkReply *reply)
             break;
         QJsonObject user_object = json_object["user"].toObject();
         m_user->setId(user_object["id"].toInt());
+        m_user->setAvatartLink(user_object["avatar"].toString());
         emit responseLogin(m_user);
         break;
     }
@@ -101,7 +97,7 @@ void NetworkManager::onResponse(QNetworkReply *reply)
         if (!json_object.contains("game"))
             break;
 
-        QJsonObject game_object = json_object["id"].toObject();
+        QJsonObject game_object = json_object["game"].toObject();
         int id = game_object["id"].toInt();
         if (!m_gameLibraryHash.contains(id))
             break;
@@ -137,5 +133,5 @@ void NetworkManager::onResponse(QNetworkReply *reply)
     default:
         break;
     }
-    qDebug() << response_data;
+    //qDebug() << response_data;
 }

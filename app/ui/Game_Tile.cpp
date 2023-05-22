@@ -5,11 +5,32 @@
 #include "Game_Tile.h"
 
 GameTile::GameTile(QWidget *parent)
-    : QAbstractButton{parent}, m_isMouseInside{false}, m_padding{4.0}, m_offset{3.0}
+    : QAbstractButton{parent}, m_webDownloader{new WebDownloader}
+    , m_isMouseInside{false}, m_padding{4.0}, m_offset{3.0}
 {
-    //m_coverPixmap = QPixmap("../app/resources/game-cover.png");
-    m_coverPixmap = QPixmap("../app/resources/pubg.jpg");
     qDebug() << "Size = " << size() << " [GameTile::GameTile]";
+}
+
+GameTile::GameTile(const QString &title, int id, const QString &coverFilePath, QWidget *parent)
+    : QAbstractButton{parent}, m_webDownloader{new WebDownloader}
+    , m_isMouseInside{false}, m_padding{4.0}, m_offset{3.0}
+{
+    m_title = title;
+    m_id = id;
+    m_coverFilePath = coverFilePath;
+
+    m_webDownloader->downloadFromWeb(coverFilePath);
+
+    connect(m_webDownloader, &WebDownloader::onGetData, this, [=](QByteArray data)
+            {
+                m_coverPixmap.loadFromData(data);
+                fitPixmap();
+                repaint();
+            });
+    connect(this, &GameTile::clicked, this, [=]()
+            {
+                emit opened(id);
+            });
 }
 
 void GameTile::setTitle(const QString &title)
@@ -62,13 +83,13 @@ void GameTile::paintEvent(QPaintEvent *event)
                         m_coverSize.width(), m_coverSize.height(),
                         20.0, 20.0);
     painter.setClipPath(path);
-    painter.drawPixmap(m_pixmapPos, m_coverPixmap);
+    painter.drawPixmap(m_pixmapPos+m_coverPos, m_coverPixmapResized);
     painter.setClipping(false);
 
     // Title text
     QFont font = painter.font();
     //font.setFamily("Public Sans Thin Regular");
-    //font.setWeight(60);
+    font.setWeight(60);
     font.setPointSize(12);
     painter.setFont(font);
     painter.setPen(pen_title);
@@ -97,19 +118,43 @@ void GameTile::resizeEvent(QResizeEvent *event)
     m_titleBgPos = QPointF(m_padding, m_size.height() - m_titleBgSize.height() - m_padding);
 
     m_titlePos = QPointF(m_coverPos.x() + 4 * m_padding, m_titleBgPos.y() + m_titleBgSize.height() * 0.65);
+    fitPixmap();
+}
 
+void GameTile::fitPixmap()
+{
     QSize pixmap_size = m_coverPixmap.size();
-    if (pixmap_size.width() >= pixmap_size.height())
+    if (pixmap_size.isEmpty())
+        return;
+
+    qreal pixmap_ration = (qreal) pixmap_size.width() / pixmap_size.height();
+    qreal widget_ration = (qreal) m_coverSize.width() / m_coverSize.height();
+
+    if (widget_ration > pixmap_ration)
     {
-        m_coverPixmap = m_coverPixmap.scaledToHeight(m_coverSize.height(), Qt::SmoothTransformation);
-        pixmap_size = m_coverPixmap.size();
-        m_pixmapPos = QPointF((m_coverSize.width() - pixmap_size.width()) / 2, m_padding);
+        m_coverPixmapResized = m_coverPixmap.scaledToWidth(m_coverSize.width(), Qt::SmoothTransformation);
+        pixmap_size = m_coverPixmapResized.size();
+        m_pixmapPos = QPointF(0, (m_coverSize.height() - pixmap_size.height()) / 2);
+        if (m_pixmapPos.y() > 0)
+            m_pixmapPos.setY(0);
     }
-    else if (pixmap_size.width() < pixmap_size.height())
+    else
     {
-        m_coverPixmap = m_coverPixmap.scaledToWidth(m_coverSize.width(), Qt::SmoothTransformation);
-        pixmap_size = m_coverPixmap.size();
-        m_pixmapPos = QPointF(m_padding, (m_coverSize.height() - pixmap_size.height()) / 2);
+        m_coverPixmapResized = m_coverPixmap.scaledToHeight(m_coverSize.height(), Qt::SmoothTransformation);
+        pixmap_size = m_coverPixmapResized.size();
+        m_pixmapPos = QPointF((m_coverSize.width() - pixmap_size.width()) / 2, 0);
+        if (m_pixmapPos.x() > 0)
+            m_pixmapPos.setX(0);
     }
+}
+
+int GameTile::id() const
+{
+    return m_id;
+}
+
+void GameTile::setId(int id)
+{
+    m_id = id;
 }
 

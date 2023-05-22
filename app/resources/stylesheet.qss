@@ -80,12 +80,12 @@ QWidget#popup QPushButton
 	/*padding: 10px 20px;*/
 }
 
+/* GamePage */
 QWidget#gamepg
 {
 	background: #161A1E;
 	border-radius: 20px;
 }
-
 
 QWidget#gamepg QScrollArea
 {
@@ -99,6 +99,32 @@ QWidget#gamepg QWidget
 	background: transparent;
 	border: none;
 	border-radius: 50px;
+}
+
+QWidget#gamepg QLabel#descr
+{
+	padding: 20px;
+}
+
+QWidget#gamepg QLabel#gamepg
+{
+	font-weight: bold;
+	font-size: 40px;
+}
+
+QWidget#gamepg QPushButton#lnkbtn
+{
+	font-size: 17px;
+	font-weight: bold;
+	border: none;
+	background: transparent;
+	color: #238BF4;
+	margin: 5px 20px;
+}
+
+QWidget#gamepg QPushButton#lnkbtn::hover
+{
+	color: white;
 }
 
 /* QLabel */
@@ -173,7 +199,7 @@ QPushButton::pressed
 
 
 /* Profile button-icon */
-QPushButton#profile
+QAbstractButton#profile
 {
 	text-align: center;
 	background: none;
@@ -185,7 +211,7 @@ QPushButton#profile
 	padding 0px;
 }
 
-QPushButton#profile::disabled
+QAbstractButton#profile::disabled
 {
 	background-color: #404040;
 	color: #656565;
@@ -194,12 +220,12 @@ QPushButton#profile::disabled
 }
 
 
-QPushButton#profile::hover
+QAbstractButton#profile::hover
 {
 	background: #2351F4;
 }
 
-QPushButton#profile::pressed
+QAbstractButton#profile::pressed
 {
 	
 }

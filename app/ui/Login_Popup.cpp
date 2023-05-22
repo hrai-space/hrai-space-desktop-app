@@ -14,18 +14,18 @@ LoginPopup::LoginPopup(const QPixmap &logo, QWidget *parent)
     m_logoLbl->setPixmap(m_logoPixmap);
 
     m_usernameEdit = new QLineEdit(this);
-    m_usernameEdit->setPlaceholderText("Username or email");
-    m_usernameEdit->setText("maximin");
+    m_usernameEdit->setPlaceholderText("Ім'я користувача чи пошта");
+    m_usernameEdit->setText("severus");
 
     m_passwordEdit = new QLineEdit(this);
-    m_passwordEdit->setPlaceholderText("Password");
+    m_passwordEdit->setPlaceholderText("Пароль");
     m_passwordEdit->setEchoMode(QLineEdit::Password);
-    m_passwordEdit->setText("12345678ded");
+    m_passwordEdit->setText("x01abs10js");
 
-    m_signInBtn = new QPushButton("Sign In", this);
+    m_signInBtn = new QPushButton("Увійти", this);
 
     m_mainLay->addWidget(m_logoLbl, 0, Qt::AlignTop | Qt::AlignHCenter);
-    m_mainLay->addWidget(new QLabel("Sign In", this), 0, Qt::AlignTop | Qt::AlignLeft);
+    m_mainLay->addWidget(new QLabel("Вхід", this), 0, Qt::AlignTop | Qt::AlignLeft);
     m_mainLay->addWidget(m_usernameEdit, 0, Qt::AlignTop);
     m_mainLay->addWidget(m_passwordEdit, 0, Qt::AlignTop);
     m_mainLay->addWidget(m_signInBtn, 0, Qt::AlignTop | Qt::AlignHCenter);

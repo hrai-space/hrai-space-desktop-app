@@ -22,25 +22,7 @@ LibraryPage::LibraryPage(QWidget *parent)
     m_scrollWidget->setLayout(m_gridLay);
     m_gridLay->setSizeConstraint(QLayout::SetMaximumSize);
 
-    // Fill up
-//    for (int r = 0; r < 1; ++r)
-//    {
-//        for (int c = 0; c < 3; ++c)
-//        {
-//            GameTile *tile = new GameTile;
-//            //tile->setObjectName("gametile");
-//            //tile->setMaximumSize(368, 350);
-//            //QSizePolicy qsp(QSizePolicy::Preferred, QSizePolicy::Preferred);
-//            //qsp.setHeightForWidth(true);
-//            //tile->setSizePolicy(qsp);
-//            tile->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
-//            //tile->setFixedWidth(640);
-//            //tile->setFixedSize(368, 350);
-//            m_gridLay->addWidget(tile, r, c, Qt::AlignHCenter);
-//        }
-//    }
-
-    m_pageTitleLbl = new QLabel("My Library", this);
+    m_pageTitleLbl = new QLabel("Бібліотека", this);
     m_pageTitleLbl->setObjectName("pgtitle");
 
     m_mainLay->addWidget(m_pageTitleLbl, 0, Qt::AlignLeft | Qt::AlignTop);
@@ -54,19 +36,25 @@ void LibraryPage::fillGameLibrary(const QHash<int, Game *> &gameLibrary)
     int row = 0, col = 0;
     foreach (auto game, gameLibrary)
     {
-        GameTile *tile = new GameTile(this);
-        tile->setTitle(game->title());
-        tile->setObjectName(QString(game->id()));
+        //qDebug() << "FILE: " << game->screenshotLinks().at(0);
+        //GameTile *tile = new GameTile(game->title(), game->id(), game->iconLink(), this);
+        //GameTile *tile = new GameTile(game->title(), game->id(), "https://hraispacestorage.fra1.digitaloceanspaces.com/images/cb43f538-18af-4c40-888b-6f390c11e27c", this);
+        //GameTile *tile = new GameTile(game->title(), game->id(), "https://hraispacestorage.fra1.digitaloceanspaces.com/images/Pigeon1.png", this);
+        //GameTile *tile = new GameTile(game->title(), game->id(), "https://hraispacestorage.fra1.digitaloceanspaces.com/images/cb43f538-18af-4c40-888b-6f390c11e27c", this);
+        GameTile *tile = new GameTile(game->title(), game->id(), game->iconLink(), this);
         tile->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
+        connect(tile, &GameTile::opened, this, [this](int id)
+                {
+                    emit requestGame(id);
+                });
         m_gridLay->addWidget(tile, row, col, Qt::AlignHCenter);
-        if (col < 3)
+        if (col < 2)
             col++;
         else
         {
             col = 0;
             row++;
         }
-
     }
 }
 

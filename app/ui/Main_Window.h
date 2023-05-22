@@ -23,18 +23,21 @@ class MainWindow : public QWidget
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-private slots:
-    void openLogInPopup();
-    void backToLibraryPage();
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;
     void resizeEvent(QResizeEvent  *event) override;
+private slots:
+    void openLogInPopup();
+    void responseLogin(const User *user);
+    void backToLibraryPage();
+    void openGamePage(const Game *game);
 private:
     NetworkManager *m_networkManager;
 
     QVBoxLayout *m_mainLay;
 
     QPixmap m_logoPixmap;
+    QPixmap m_logoFullPixmap;
 
     // Top bar
     TopBar *m_topBarWidget;
